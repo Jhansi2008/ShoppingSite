@@ -1,0 +1,85 @@
+﻿
+@model ShoppingSite.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UnitPrice)
+        </dd>
+       
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitsInStock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UnitsInStock)
+        </dd>
+        
+        <dt>
+
+            @Html.Label("Average Rating")
+
+        </dt>
+        <dd>
+            @if (ViewBag.AvgRating == 0)
+        {
+            <h6>0 Reviews</h6>
+    }
+            @for (int i = 1; i <= ViewBag.AvgRating; i++)
+        {
+            <img src="~/Images/YellowRating.png" alt="Star Rating" align="middle" id=@i class="rating" />
+
+    }
+
+        </dd>
+
+    </dl>
+    @if (ViewBag.IsCustomer == true)
+    {
+        <input type="button" value="Write Review" onclick="location.href='@Url.Action("Create", "ProductReviews", new { ProductId = @Model.ProductId })'" />
+        <input type="button" value="Add To Cart" onclick="location.href='@Url.Action("AddToCart", "Carts", new { ProductId = @Model.ProductId })'" />
+        
+    }
+    @Html.Partial("_Reviews", @Model.ProductReviews)
+
+</div>
+<p>
+  
+    @Html.ActionLink("Back to List", "Index")
+</p>

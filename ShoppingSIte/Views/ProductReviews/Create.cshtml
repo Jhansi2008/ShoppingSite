@@ -1,0 +1,61 @@
+﻿@model ShoppingSite.Models.ProductReview
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>ProductReview</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.ReviewerName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ReviewerName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ReviewerName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Rating, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <p>
+                    @Html.HiddenFor(model => model.Rating)
+                    <img src="~/Images/WhiteRating.png" alt="Star Rating" align="middle" id="1" class="rating" />
+                    <img src="~/Images/WhiteRating.png" alt="Star Rating" align="middle" id="2" class="rating" />
+                    <img src="~/Images/WhiteRating.png" alt="Star Rating" align="middle" id="3" class="rating" />
+                    <img src="~/Images/WhiteRating.png" alt="Star Rating" align="middle" id="4" class="rating" />
+                    <img src="~/Images/WhiteRating.png" alt="Star Rating" align="middle" id="5" class="rating" />
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Comments, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Comments, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Comments, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        @if (ViewBag.IsCustomer == true)
+        {
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+        }
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Details", "Products", new { id=ViewBag.ProductId},null)
+</div>

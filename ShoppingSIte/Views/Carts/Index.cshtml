@@ -1,0 +1,36 @@
+﻿@model List<ShoppingSIte.Models.Cart>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Cart Items</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.ProductName)
+            </td>
+            <td>
+
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+@if(ViewBag.TotalItems!=0 && ViewBag.TotalItems!=null)
+{
+<input type="button" value="Place Order" class="btn btn-default" onclick="location.href='@Url.Action("Create", "Orders")'" />
+}

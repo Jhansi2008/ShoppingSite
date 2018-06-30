@@ -1,0 +1,40 @@
+﻿@model List<ShoppingSite.Models.ProductReview>
+
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.Label("Reviewer Name")
+        </th>
+
+        <th>
+            @Html.Label("Comments")
+        </th>
+        <th>
+            @Html.Label("Rating")
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.ReviewerName)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Comments)
+        </td>
+        <td>
+            @for (int i = 1; i <= item.Rating; i++)
+    {
+        <img src="~/Images/YellowRating.png" alt="Star Rating" align="middle" id=@i class="rating" />
+
+}
+        </td>
+    </tr>
+    }
+
+</table>
